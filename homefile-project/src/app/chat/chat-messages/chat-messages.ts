@@ -5,12 +5,14 @@ import { SocketService } from '../../socket.service';
 interface ChatMessage {
   user: string;
   text: string;
+  timestamp: string;
 }
 
 @Component({
   selector: 'app-chat-messages',
   template: `
     @for (msg of messages; track msg) {
+      <div>{{ msg.timestamp | date: 'dd.MM.yyyy HH:mm' }}</div>
       <div>{{ msg.user }}: {{ msg.text }}</div>
     }
   `,

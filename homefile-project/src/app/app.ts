@@ -7,6 +7,7 @@ import { ChatInput } from './chat/chat-input/chat-input';
 interface ChatMessage {
   user: string;
   text: string;
+  timestamp: string;
 }
 
 @Component({

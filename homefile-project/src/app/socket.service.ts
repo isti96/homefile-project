@@ -4,6 +4,7 @@ import { io, Socket } from 'socket.io-client';
 interface ChatMessage {
   user: string;
   text: string;
+  timestamp: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -18,6 +19,7 @@ export class SocketService {
     this.socket.emit('message', {
       user: msg.user,
       text: msg.text,
+      timestamp: msg.timestamp,
     });
   }
 

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 interface ChatMessage {
   user: string;
   text: string;
+  timestamp: string;
 }
 
 @Component({
@@ -30,6 +31,7 @@ export class ChatInput {
     this.messageSent.emit({
       user: this.name,
       text: this.message,
+      timestamp: new Date().toISOString(),
     });
 
     this.message = '';
