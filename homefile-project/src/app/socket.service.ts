@@ -15,7 +15,10 @@ export class SocketService {
   }
 
   sendMessage(msg: ChatMessage) {
-    this.socket.emit('message', msg);
+    this.socket.emit('message', {
+      user: msg.user,
+      text: msg.text,
+    });
   }
 
   onMessage(callback: (msg: ChatMessage) => void) {

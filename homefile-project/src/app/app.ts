@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SocketService } from './socket.service';
+import { ChatMessages } from './chat/chat-messages/chat-messages';
+import { ChatInput } from './chat/chat-input/chat-input';
 
 interface ChatMessage {
   user: string;
@@ -9,23 +11,22 @@ interface ChatMessage {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, ChatMessages, ChatInput],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App implements OnInit {
+  messages = signal<ChatMessage[]>([]);
   constructor(private socket: SocketService) {}
-  messages: ChatMessage[] = [];
 
   ngOnInit() {
     this.socket.onMessage((msg: ChatMessage) => {
-      this.messages.push(msg);
+      this.messages.set([...this.messages(), msg]);
     });
   }
 
-  send() {
-    this.socket.onMessage((msg) => {
-      this.messages.push(msg);
-    });
+  send(message: ChatMessage) {
+    this.socket.sendMessage(message);
   }
 }
