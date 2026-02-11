@@ -16,9 +16,8 @@ app.use(cors());
 app.use(express.json());
 
 io.on('connection', (socket) => {
-
   socket.on('message', (msg) => {
-    io.emit('message', msg);
+    io.emit('message', { ...msg, senderId: socket.id });
   });
 
   socket.on('disconnect', () => {

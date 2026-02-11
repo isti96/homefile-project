@@ -5,14 +5,19 @@ interface ChatMessage {
   user: string;
   text: string;
   timestamp: string;
+  senderId: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class SocketService {
   private socket: Socket;
+  public myId: string | undefined;
 
   constructor() {
     this.socket = io('http://localhost:3000');
+    this.socket.on('connect', () => {
+      this.myId = this.socket.id;
+    });
   }
 
   sendMessage(msg: ChatMessage) {
@@ -20,6 +25,7 @@ export class SocketService {
       user: msg.user,
       text: msg.text,
       timestamp: msg.timestamp,
+      senderId: this.socket.id,
     });
   }
 

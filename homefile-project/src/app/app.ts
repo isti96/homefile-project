@@ -8,6 +8,7 @@ interface ChatMessage {
   user: string;
   text: string;
   timestamp: string;
+  senderId: string;
 }
 
 @Component({

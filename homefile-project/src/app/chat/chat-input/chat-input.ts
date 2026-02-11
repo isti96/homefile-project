@@ -5,6 +5,7 @@ interface ChatMessage {
   user: string;
   text: string;
   timestamp: string;
+  senderId: string;
 }
 
 @Component({
@@ -32,6 +33,7 @@ export class ChatInput {
       user: this.name,
       text: this.message,
       timestamp: new Date().toISOString(),
+      senderId: '',
     });
 
     this.message = '';

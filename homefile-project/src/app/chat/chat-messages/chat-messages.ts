@@ -6,6 +6,7 @@ interface ChatMessage {
   user: string;
   text: string;
   timestamp: string;
+  senderId: string;
 }
 
 @Component({
@@ -13,7 +14,10 @@ interface ChatMessage {
   template: `
     @for (msg of messages; track msg) {
       <div>{{ msg.timestamp | date: 'dd.MM.yyyy HH:mm' }}</div>
-      <div>{{ msg.user }}: {{ msg.text }}</div>
+      <div>
+        <span [class.my-message]="msg.senderId === socketService.myId">{{ msg.user }}</span>
+        : {{ msg.text }}
+      </div>
     }
   `,
   styleUrl: './chat-messages.css',
