@@ -2,21 +2,19 @@ const express = require('express');
 const { Server } = require('socket.io');
 const { createServer } = require('node:http');
 const cors = require('cors');
-const path = require("path");
+const path = require('path');
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:4200',
+    origin: ['http://localhost:4200', 'https://homefile-project.onrender.com/'],
     methods: ['GET', 'POST'],
   },
 });
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static(
-  path.join(__dirname, "dist/homefile-project/browser")
-));
+app.use(express.static(path.join(__dirname, 'dist/homefile-project/browser')));
 
 app.use(cors());
 app.use(express.json());
@@ -31,12 +29,7 @@ io.on('connection', (socket) => {
   });
 });
 
-// server.listen(3000, () => {
-//   console.log('server running at http://localhost:3000');
-// });
-
-
-server.listen(PORT, "0.0.0.0", () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
 
