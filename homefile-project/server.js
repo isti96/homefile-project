@@ -8,7 +8,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:4200', 'https://homefile-project.onrender.com/'],
+    origin: ['https://homefile-project.onrender.com/', 'http://localhost:4200'],
     methods: ['GET', 'POST'],
   },
 });
