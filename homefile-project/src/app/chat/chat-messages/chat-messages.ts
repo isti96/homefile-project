@@ -13,10 +13,10 @@ interface ChatMessage {
   selector: 'app-chat-messages',
   template: `
     @for (msg of messages; track msg) {
-      <div>{{ msg.timestamp | date: 'dd.MM.yyyy HH:mm' }}</div>
-      <div>
-        <span [class.my-message]="msg.senderId === socketService.myId">{{ msg.user }}</span>
-        : {{ msg.text }}
+      <div class="date">{{ msg.timestamp | date: 'dd.MM.yyyy HH:mm' }}</div>
+      <div class="username-message-box">
+        <span class="username" [class.my-message]="msg.senderId === socketService.myId">{{ msg.user }}</span>
+        : <span class="message" >{{ msg.text }}</span>
       </div>
     }
   `,

@@ -13,7 +13,7 @@ interface ChatMessage {
   template: `
     <div class="input-area">
       <input [(ngModel)]="name" placeholder="Your name" />
-      <input [(ngModel)]="message" placeholder="Type message..." />
+      <input [(ngModel)]="message" placeholder="Type message..." required />
       <button (click)="send()">Send</button>
     </div>
   `,

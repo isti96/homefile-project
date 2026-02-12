@@ -1,3 +1,17 @@
 .my-message {
   font-weight: bold;
 }
+
+.date {
+  font-size: small;
+}
+
+.username-message-box {
+  background-color: lightgray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.username {
+  margin-left: 5px;
+}
