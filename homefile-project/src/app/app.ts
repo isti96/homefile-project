@@ -16,7 +16,6 @@ interface ChatMessage {
   standalone: true,
   imports: [RouterOutlet, ChatMessages, ChatInput],
   templateUrl: './app.html',
-  styleUrl: './app.css',
 })
 export class App implements OnInit {
   messages = signal<ChatMessage[]>([]);

@@ -6,13 +6,13 @@ const path = require('path');
 
 const app = express();
 const server = createServer(app);
+const PORT = process.env.PORT || 3000;
 const io = new Server(server, {
   cors: {
     origin: ['https://homefile-project.onrender.com/', 'http://localhost:4200'],
     methods: ['GET', 'POST'],
   },
 });
-const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'dist/homefile-project/browser')));
 
@@ -31,8 +31,4 @@ io.on('connection', (socket) => {
 
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
-});
-
-app.get('/', (req, res) => {
-  res.json({ message: 'Hello from Expresssss' });
 });

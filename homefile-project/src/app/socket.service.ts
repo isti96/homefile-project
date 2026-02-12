@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
+import { environment } from '../environments/environment';
 
 interface ChatMessage {
   user: string;
@@ -14,7 +15,7 @@ export class SocketService {
   public myId: string | undefined;
 
   constructor() {
-    this.socket = io();
+    this.socket = io(environment.apiUrl);
     this.socket.on('connect', () => {
       this.myId = this.socket.id;
     });
